@@ -90,4 +90,27 @@ UPDATE student SET ClassID = 2 WHERE StudentName = 'Hung';
 
 SELECT S.StudentName, Sub.SubName, M.Mark
 FROM student S join  Mark M ON S.StudentID = M.StudentID join Subject Sub on M.SubID = Sub.SubID
-ORDER BY M.Mark DESC;
+ORDER BY M.Mark DESC, StudentName;
+
+SELECT Address, COUNT(StudentId) AS 'Số lượng học viên'
+FROM Student
+GROUP BY Address;
+
+SELECT S.StudentId, S.StudentName, AVG(M.Mark)
+FROM Student S join Mark M on S.StudentId = M.StudentId
+GROUP BY S.StudentId, S.StudentName;
+
+SELECT S.StudentId,S.StudentName, AVG(Mark)
+FROM Student S join Mark M on S.StudentId = M.StudentId
+GROUP BY S.StudentId, S.StudentName
+HAVING AVG(Mark) > 15;
+
+SELECT S.StudentId,S.StudentName, AVG(Mark)
+FROM Student S join Mark M on S.StudentId = M.StudentId
+GROUP BY S.StudentId, S.StudentName
+HAVING AVG(Mark) > 15;
+
+SELECT S.StudentId, S.StudentName, AVG(Mark)
+FROM Student S join Mark M on S.StudentId = M.StudentId
+GROUP BY S.StudentId, S.StudentName
+HAVING AVG(Mark) >= ALL (SELECT AVG(Mark) FROM Mark GROUP BY Mark.StudentId);
