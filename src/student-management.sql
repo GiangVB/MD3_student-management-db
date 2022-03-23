@@ -114,3 +114,18 @@ SELECT S.StudentId, S.StudentName, AVG(Mark)
 FROM Student S join Mark M on S.StudentId = M.StudentId
 GROUP BY S.StudentId, S.StudentName
 HAVING AVG(Mark) >= ALL (SELECT AVG(Mark) FROM Mark GROUP BY Mark.StudentId);
+
+SELECT *
+FROM subject
+GROUP BY SubID
+HAVING AVG(Credit) >= ALL (SELECT AVG(Credit) FROM subject GROUP BY SubID);
+
+SELECT *
+FROM subject s JOIN mark m on s.SubID = m.SubID
+GROUP BY s.SubID
+HAVING MAX(Mark) >= ALL (SELECT MAX(Mark) FROM mark GROUP BY m.SubID);
+
+SELECT s.StudentName, s.Address, s.Phone, AVG(m.Mark)
+FROM student s join mark m on s.StudentID = m.StudentID
+GROUP BY s.StudentID
+HAVING AVG(Mark) >= ALL (SELECT AVG(Mark) FROM mark GROUP BY mark.StudentID);
