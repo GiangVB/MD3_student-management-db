@@ -76,3 +76,18 @@ WHERE C.ClassName = 'A1';
 SELECT S.StudentId, S.StudentName, Sub.SubName, M.Mark
 FROM Student S join Mark M on S.StudentId = M.StudentId join Subject Sub on M.SubId = Sub.SubId
 WHERE Sub.SubName = 'CF';
+
+SELECT *
+FROM student WHERE StudentName LIKE 'H%';
+
+SELECT *
+FROM class WHERE StartDate >= '2008-12-01' AND StartDate <= '2008-12-31';
+
+SELECT *
+FROM subject WHERE Credit BETWEEN 3 AND 5;
+
+UPDATE student SET ClassID = 2 WHERE StudentName = 'Hung';
+
+SELECT S.StudentName, Sub.SubName, M.Mark
+FROM student S join  Mark M ON S.StudentID = M.StudentID join Subject Sub on M.SubID = Sub.SubID
+ORDER BY M.Mark DESC;
